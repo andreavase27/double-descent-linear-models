@@ -1,13 +1,18 @@
 import numpy as np
 
 
-def generate_synthetic(n_train, n_test, D, sigma, rng):
+def generate_synthetic(n_train, n_test, D, sigma, rng, decay=0.0):
     """Generate a synthetic regression dataset with noisy linear labels.
 
     Model: y = x . beta + sigma * eps, with x ~ N(0, I_D) and eps ~ N(0, 1).
+
+    decay controls how the signal is spread across features: the j-th
+    coefficient is scaled by j^(-decay) before normalisation.
+    decay = 0: all features equally important (on average).
+    decay > 0: the first features carry most of the signal.
     """
     # True coefficient vector, rescaled to unit norm
-    beta = rng.standard_normal(D)
+    beta = rng.standard_normal(D) * np.arange(1, D + 1) ** (-decay)
     beta = beta / np.linalg.norm(beta)
 
     # Inputs: independent standard Gaussian entries
