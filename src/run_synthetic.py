@@ -160,10 +160,8 @@ def plot_ridge_comparison(name, all_results, label):
 
 
 def save(fig, filename):
-    """Save a figure as PDF (for the report) and PNG (for quick viewing)."""
     FIGURES.mkdir(exist_ok=True)
-    for ext in ("pdf", "png"):
-        fig.savefig(FIGURES / f"{filename}.{ext}", dpi=150)
+    fig.savefig(FIGURES / f"{filename}.pdf")
     plt.close(fig)
 
 
