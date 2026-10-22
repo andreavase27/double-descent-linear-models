@@ -2,10 +2,7 @@ import numpy as np
 
 
 def least_squares(X, y):
-    """Least squares coefficients; minimum-norm solution when d > n.
-
-    X has shape (n, d), y has shape (n,). Returns w of shape (d,).
-    """
+    """Least squares coefficients; minimum-norm solution when d > n."""
     n, d = X.shape
 
     if d <= n:
@@ -26,14 +23,9 @@ def predict(X, w):
 
 
 def mean_squared_error(y_true, y_pred):
-    """Average squared difference between labels and predictions."""
     return np.mean((y_true - y_pred) ** 2)
 
 def ridge(X, y, lam):
-    """Ridge regression: minimizes ||X w - y||^2 + lam * ||w||^2.
-
-    X has shape (n, d), y has shape (n,), lam > 0. Returns w of shape (d,).
-    """
     n, d = X.shape
 
     if d <= n:
@@ -51,10 +43,8 @@ def ridge(X, y, lam):
 def ridge_cv(X, y, lambdas, n_folds=5):
     """Ridge with lam chosen by k-fold cross-validation on (X, y) only.
 
-    The training set is split into n_folds parts; for each lam we train on
-    n_folds - 1 parts and measure the error on the remaining one. The lam
-    with the smallest average validation error is used to refit on all data.
-    """
+    The lam with the smallest average validation error is used to refit on all data. """
+ 
     n = X.shape[0]
     folds = np.array_split(np.arange(n), n_folds)
 

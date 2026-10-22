@@ -1,8 +1,5 @@
-"""Double descent on the synthetic dataset: least squares and ridge.
+"""Double descent on the synthetic dataset: least squares and ridge."""
 
-Run from the project root:  python src/run_synthetic.py
-Figures are saved in figures/.
-"""
 from functools import partial
 from pathlib import Path
 
@@ -13,7 +10,7 @@ from synthetic import generate_synthetic
 from models import least_squares, ridge, ridge_cv
 from experiment import run_experiment, summarize, theoretical_risk
 
-# ---------------------------------------------------------------- settings
+# settings
 N_TRAIN = 100      # training points: fixed, as required by the assignment
 N_TEST = 2000      # test points: large, so the test error is a precise estimate
 D_TOTAL = 500      # features available; the model uses the first d of them
