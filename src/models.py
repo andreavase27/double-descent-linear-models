@@ -62,6 +62,19 @@ def ridge_cv(X, y, lambdas, n_folds=5):
     best_lam = lambdas[int(np.argmin(cv_errors))]
     return ridge(X, y, best_lam)
 
+
+def gradient_descent(X, y, n_iter):
+    """Least squares by gradient descent, starting from w = 0."""
+    n, d = X.shape
+    step = n / np.linalg.norm(X, 2) ** 2     # 1 / L, with L = sigma_max^2 / n
+    w = np.zeros(d)
+
+    for _ in range(n_iter):
+        gradient = X.T @ (X @ w - y) / n
+        w = w - step * gradient
+
+    return w
+
 if __name__ == "__main__":
     # Sanity checks, run only when this file is executed directly
     from synthetic import generate_synthetic
