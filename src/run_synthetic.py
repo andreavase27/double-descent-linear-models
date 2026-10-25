@@ -15,7 +15,7 @@ N_TRAIN = 100      # training points: fixed, as required by the assignment
 N_TEST = 2000      # test points: large, so the test error is a precise estimate
 D_TOTAL = 500      # features available; the model uses the first d of them
 SIGMA = 0.5        # label noise standard deviation (noise variance 0.25)
-N_REPS = 50        # independent training sets (seeds 0..49)
+N_REPS = 50        # independent training sets (seeds from 0 to 49)
 
 # Model sizes: coarse far from the threshold, dense around d = n
 D_VALUES = sorted(set(

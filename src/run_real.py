@@ -13,7 +13,7 @@ from experiment import run_experiment, summarize
 N_TRAIN = 100      # training points: same n as the synthetic experiments
 N_TEST = 2000      # test points, drawn from the remaining districts
 N_FREQ = 1000      # random frequencies -> up to 2 * N_FREQ = 2000 features
-N_REPS = 50        # random train/test splits (seeds 0..49)
+N_REPS = 50        # random train/test splits (seeds from 0 to 49)
 
 # Model sizes (always even: each frequency gives a cos and a sin column)
 D_VALUES = sorted(set(

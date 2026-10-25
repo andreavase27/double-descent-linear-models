@@ -1,8 +1,5 @@
-"""Extension: effect of the label noise on double descent (synthetic data).
+"""Extension: effect of the label noise on double descent (synthetic data)."""
 
-Run from the project root:  python src/run_noise.py
-Figures are saved in figures/.
-"""
 from pathlib import Path
 
 import numpy as np

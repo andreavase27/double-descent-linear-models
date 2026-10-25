@@ -5,14 +5,6 @@ from models import least_squares, predict, mean_squared_error
 
 def run_experiment(sample_data, d_values, n_reps, fit=least_squares):
     """Train one model per dimension d, repeated over independent datasets.
-
-    sample_data : function rng -> (X_train, y_train, X_test, y_test).
-                  The columns must be ordered so that the model of size d
-                  uses the first d of them.
-    d_values    : list of model sizes d to try
-    n_reps      : number of repetitions; repetition r uses seed r
-    fit         : function (X, y) -> w, the training algorithm
-
     Returns a dict of arrays of shape (n_reps, len(d_values)) with the
     train error, the test error and the norm of w for every run.
     """
@@ -50,12 +42,7 @@ def summarize(values):
 
 
 def theoretical_risk(d, n, sigma, signal_weights):
-    """Expected test error of min-norm least squares, Gaussian features.
-
-    signal_weights[j] is the share of the signal variance carried by
-    feature j (the weights sum to 1). Formulas from Belkin, Hsu and Xu,
-    "Two models of double descent for weak features" (2020).
-    """
+    """Expected test error of min-norm least squares, Gaussian features."""
     seen = signal_weights[:d].sum()      # signal the model can see
     unseen = 1.0 - seen                  # signal it cannot see
     effective_noise = sigma ** 2 + unseen
