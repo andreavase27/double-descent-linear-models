@@ -385,7 +385,7 @@ points and $500$ weak features there is little to learn, and
 cross-validation detects it.
 
 \subsection{Real data: California Housing}
-On California Housing the picture is the same as on synthetic data
+On California Housing the curve has the same shape as on synthetic data
 (Figure~\ref{fig:real-ls}). The training error reaches zero at $d = 100$,
 the test error has a sharp peak at the same point, with a median of about
 $4800$, and the norm of the coefficients peaks there too. After the
@@ -429,7 +429,7 @@ $0.72$, below the trivial predictor and better than every model below the
 threshold with the same bandwidth. Whether overparameterization pays off on
 this dataset thus depends on how the features are built.
 
-Ridge regression behaves as on synthetic data (Figure~\ref{fig:real-ridge}).
+Ridge regression behaves in a similar way to synthetic data (Figure~\ref{fig:real-ridge}).
 With $\lambda \ge 1$ the peak disappears, and with $\lambda$ chosen by
 cross-validation the error keeps improving as features are added, down to
 $0.36$ at $d = 1500$; ridge with $\lambda = 100$ does about as well
