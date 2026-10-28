@@ -4,7 +4,6 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Larger text in all figures, so they stay readable when scaled in the report
 plt.rcParams.update({
     "font.size": 13,
     "axes.titlesize": 14,
