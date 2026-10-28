@@ -92,7 +92,7 @@ def plot(test, dist):
         ax.set_xlabel("number of features d")
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="#e6e5e1", linewidth=0.5)
-        # One legend is enough: both panels use the same colors
+    # One legend is enough: both panels use the same colors
     ax_err.legend(frameon=False, fontsize=11, loc="upper right")
 
     fig.suptitle(f"Gradient descent from w = 0 vs closed form, scenario A "
