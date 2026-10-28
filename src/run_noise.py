@@ -5,6 +5,17 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Larger text in all figures, so they stay readable when scaled in the report
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.titlesize": 14,
+    "axes.labelsize": 13,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+    "legend.fontsize": 11,
+    "figure.titlesize": 14,
+})
+
 from synthetic import generate_synthetic
 from models import least_squares
 from experiment import run_experiment, summarize, theoretical_risk
@@ -79,11 +90,14 @@ if __name__ == "__main__":
         ax.axvline(N_TRAIN, color=INK, linewidth=1)
         ax.set_xlabel("number of features d")
         ax.set_ylabel("test error (median, band = IQR)")
-        ax.set_title(f"Scenario {name}: {cfg['label']}", fontsize=10)
+        ax.set_title(f"Scenario {name}: {cfg['label']}", fontsize=13)
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="#e6e5e1", linewidth=0.5)
-        ax.legend(frameon=False, fontsize=8, loc="upper right",
-                  title="solid: simulation, dashed: theory", title_fontsize=7)
+        if name == "A":
+            # One legend is enough: both panels use the same colors
+            ax.legend(frameon=False, fontsize=11, loc="upper right",
+                      title="solid: simulation, dashed: theory",
+                      title_fontsize=10)
 
     fig.suptitle(f"Effect of the label noise, least squares "
                  f"(n = {N_TRAIN}, {N_REPS} repetitions)")

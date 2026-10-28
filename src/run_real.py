@@ -5,6 +5,17 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Larger text in all figures, so they stay readable when scaled in the report
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.titlesize": 14,
+    "axes.labelsize": 13,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+    "legend.fontsize": 11,
+    "figure.titlesize": 14,
+})
+
 from real import load_california, make_real_sampler
 from models import least_squares, ridge, ridge_cv
 from experiment import run_experiment, summarize
@@ -57,7 +68,7 @@ def mark_mean_predictor(ax):
     """Targets are standardized, so predicting the training mean gives ~1."""
     ax.axhline(1.0, color=MUTED, linewidth=1, linestyle=":")
     ax.text(D_VALUES[-1], 1.0, "predict mean", color=INK,
-            ha="right", va="bottom", fontsize=8)
+            ha="right", va="bottom", fontsize=11)
 
 
 def plot_curves(ax, d, curves, key):
@@ -87,11 +98,11 @@ def plot_least_squares(results):
     # train error is 0 for d >= n: symlog shows it at the bottom
     ax_err.set_yscale("symlog", linthresh=0.1, linscale=0.5)
     ax_err.set_ylim(0, 1e4)
-    ax_err.legend(frameon=False, fontsize=8, loc="upper right")
+    ax_err.legend(frameon=False, fontsize=11, loc="upper right")
 
     plot_curves(ax_norm, d, {"norm of w": results}, "norm")
     style(ax_norm, r"$\|w\|$ (median, band = IQR)")
-    ax_norm.legend(frameon=False, fontsize=8, loc="upper right")
+    ax_norm.legend(frameon=False, fontsize=11, loc="upper right")
 
     fig.suptitle(f"California Housing, least squares on random Fourier "
                  f"features (n = {N_TRAIN}, {N_REPS} splits)")
@@ -107,7 +118,7 @@ def plot_ridge(all_results):
     mark_mean_predictor(ax_err)
     style(ax_err, "test error (median, band = IQR)")
     style(ax_norm, r"$\|w\|$ (median, band = IQR)")
-    ax_err.legend(frameon=False, fontsize=8, loc="upper right")
+    ax_err.legend(frameon=False, fontsize=11, loc="upper right")
     fig.suptitle(f"California Housing, least squares vs ridge "
                  f"(n = {N_TRAIN}, {N_REPS} splits)")
     fig.tight_layout()
@@ -120,9 +131,9 @@ def plot_bandwidth(scale_results):
     plot_curves(ax, d, scale_results, "test")
     mark_mean_predictor(ax)
     style(ax, "test error (median, band = IQR)")
-    ax.legend(frameon=False, fontsize=8, loc="upper right")
+    ax.legend(frameon=False, fontsize=11, loc="upper right")
     ax.set_title("California Housing, least squares: effect of the bandwidth",
-                 fontsize=10)
+                 fontsize=13)
     fig.tight_layout()
     save(fig, "real_bandwidth")
 

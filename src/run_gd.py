@@ -4,6 +4,17 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Larger text in all figures, so they stay readable when scaled in the report
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.titlesize": 14,
+    "axes.labelsize": 13,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+    "legend.fontsize": 11,
+    "figure.titlesize": 14,
+})
+
 from synthetic import generate_synthetic
 from models import least_squares, gradient_descent, predict, mean_squared_error
 from experiment import summarize
@@ -82,7 +93,8 @@ def plot(test, dist):
         ax.set_xlabel("number of features d")
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="#e6e5e1", linewidth=0.5)
-        ax.legend(frameon=False, fontsize=8, loc="upper right")
+        # One legend is enough: both panels use the same colors
+    ax_err.legend(frameon=False, fontsize=11, loc="upper right")
 
     fig.suptitle(f"Gradient descent from w = 0 vs closed form, scenario A "
                  f"(n = {N_TRAIN}, $\\sigma$ = {SIGMA}, {N_REPS} repetitions)")

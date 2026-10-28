@@ -6,6 +6,17 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Larger text in all figures, so they stay readable when scaled in the report
+plt.rcParams.update({
+    "font.size": 13,
+    "axes.titlesize": 14,
+    "axes.labelsize": 13,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+    "legend.fontsize": 11,
+    "figure.titlesize": 14,
+})
+
 from synthetic import generate_synthetic
 from models import least_squares, ridge, ridge_cv
 from experiment import run_experiment, summarize, theoretical_risk
@@ -90,10 +101,10 @@ def plot_scenario(name, results, decay, label):
 
     ax_err.axhline(SIGMA ** 2, color=MUTED, linewidth=1, linestyle=":")
     ax_err.text(D_TOTAL, SIGMA ** 2, "noise floor", color=INK,
-                ha="right", va="bottom", fontsize=8)
+                ha="right", va="bottom", fontsize=11)
     ax_err.axhline(1 + SIGMA ** 2, color=MUTED, linewidth=1, linestyle=":")
     ax_err.text(D_TOTAL, 1 + SIGMA ** 2, "predict 0", color=INK,
-                ha="right", va="bottom", fontsize=8)
+                ha="right", va="bottom", fontsize=11)
 
     # symlog: logarithmic above 0.1, linear below, so train error 0 is visible
     ax_err.set_yscale("symlog", linthresh=0.1, linscale=0.5)
@@ -107,7 +118,7 @@ def plot_scenario(name, results, decay, label):
                  label="norm of w (median, band = IQR)")
     ax_norm.axhline(1.0, color=MUTED, linewidth=1, linestyle=":")
     ax_norm.text(D_TOTAL, 1.0, r"$\|\beta\| = 1$", color=INK,
-                 ha="right", va="bottom", fontsize=8)
+                 ha="right", va="bottom", fontsize=11)
     ax_norm.set_yscale("log")
     ax_norm.set_ylabel(r"$\|w\|$")
 
@@ -116,8 +127,8 @@ def plot_scenario(name, results, decay, label):
         ax.set_xlabel("number of features d")
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="#e6e5e1", linewidth=0.5)
-        ax.legend(frameon=False, fontsize=8, loc="upper right")
-    ax_err.text(N_TRAIN + 5, 1500, "d = n", color=INK, fontsize=8)
+        ax.legend(frameon=False, fontsize=11, loc="upper right")
+    ax_err.text(N_TRAIN + 5, 1500, "d = n", color=INK, fontsize=11)
 
     fig.suptitle(f"Scenario {name}: {label} "
                  f"(n = {N_TRAIN}, $\\sigma$ = {SIGMA}, {N_REPS} repetitions)")
@@ -138,10 +149,10 @@ def plot_ridge_comparison(name, all_results, label):
 
     ax_err.axhline(SIGMA ** 2, color=MUTED, linewidth=1, linestyle=":")
     ax_err.text(D_TOTAL, SIGMA ** 2, "noise floor", color=INK,
-                ha="right", va="bottom", fontsize=8)
+                ha="right", va="bottom", fontsize=11)
     ax_err.axhline(1 + SIGMA ** 2, color=MUTED, linewidth=1, linestyle=":")
     ax_err.text(D_TOTAL, 1 + SIGMA ** 2, "predict 0", color=INK,
-                ha="right", va="bottom", fontsize=8)
+                ha="right", va="bottom", fontsize=11)
     ax_err.set_ylabel("test error (median, band = IQR)")
     ax_norm.set_ylabel(r"$\|w\|$ (median, band = IQR)")
 
@@ -151,7 +162,7 @@ def plot_ridge_comparison(name, all_results, label):
         ax.set_xlabel("number of features d")
         ax.spines[["top", "right"]].set_visible(False)
         ax.grid(axis="y", color="#e6e5e1", linewidth=0.5)
-    ax_err.legend(frameon=False, fontsize=8, loc="upper right")
+    ax_err.legend(frameon=False, fontsize=11, loc="upper right")
 
     fig.suptitle(f"Scenario {name}: {label}, least squares vs ridge "
                  f"(n = {N_TRAIN}, $\\sigma$ = {SIGMA}, {N_REPS} repetitions)")
