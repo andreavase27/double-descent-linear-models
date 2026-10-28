@@ -54,7 +54,7 @@ MODELS = {
 
 FIGURES = Path(__file__).resolve().parent.parent / "figures"
 
-# Colors (validated categorical palette, fixed order) and text inks
+# Colors for the figures
 PALETTE = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]
 TEST_COLOR = PALETTE[0]
 TRAIN_COLOR = PALETTE[1]

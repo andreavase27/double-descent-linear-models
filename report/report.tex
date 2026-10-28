@@ -280,7 +280,7 @@ of the final model.
 \paragraph{Implementation.}
 All algorithms are implemented from scratch in Python; NumPy is used only for
 basic linear algebra.
-Least squares and ridge solve a linear system with
+Least squares and ridge solve a linear system with the function
 \texttt{numpy.linalg.solve} rather than computing a matrix inverse, because
 this is more accurate when the matrix is close to singular, as happens near
 $d = n$.
